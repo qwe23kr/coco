@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="number" id="maxNum">
+	<button onclick="startGame(this)"
+		style="width: 50px; height: 30px; background-color: red; background-position: center center; background-size: 50px; background-image: url(https://i.pinimg.com/originals/bb/9d/c1/bb9dc19107e0eb000c089975e2b3a8ab.png);"></button>
+	<div id="rDiv"></div>
+	<script>
+		var ranNum = 0;
+		function startGame() {
+
+			var maxNum = document.querySelector('#maxNum').value;
+			ranNum = Math.floor(Math.random() * maxNum) + 1;
+			var html = '<input type="number" id="check"><button onclick="checkNum()">맞냐?</button>';
+			document.querySelector('#rDiv').innerHTML = html;
+		}
+		function checkNum() {
+			var checkNum = document.querySelector('#check').value;
+			if (ranNum > checkNum) {
+				alert('up!');
+
+			} else if (ranNum < checkNum) {
+				alert('down!');
+
+			} else {
+				alert('딱대!!');
+
+			}
+		}
+	</script>
+</body>
+</html>

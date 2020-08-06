@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="EUC-KR">
+
+<title>제이쿼리활용로또</title>
+
+<style>
+
+    div {width:120px;
+
+        height:120px;
+
+        border:1px solid gray;
+
+        margin-right:5px; /* 오른쪽 여백 : 5px */
+
+        display:table; /* div들을 한줄에 보이게 하는 역할 */
+
+        float:left;}
+
+   
+
+    p { font-size:50px;
+
+        font-weight:bold;
+
+        text-align:center;
+
+        display:table-cell;
+
+        vertical-align:middle;}
+
+        
+
+    #blue_num, #navy_num, #purple_num{color: white;}
+
+   
+
+    nav{clear:both;}
+
+    #red{background:red;border-radius: 50%;}
+
+    #orange{background:orange;border-radius: 50%;}
+
+    #yellow{background:yellow;border-radius: 50%;}
+
+    #green{background:green;border-radius: 50%;}
+
+    #blue{background:blue;border-radius: 50%;}
+
+    #navy{background:navy;border-radius: 50%;}
+
+    #purple{background:purple;border-radius: 50%;}
+
+</style>
+
+<script src="jquery-3.5.1.js"></script>
+
+<script>
+
+// 1부터 toNum까지(1과 toNum숫자를 포함) 숫자를 랜덤으로 만들어 주는 함수
+
+//내가 입력한 숫자를 0부터 toNum(입력한 숫자를 받는 값)까지 랜덤으로 섞고 소수점을 버린다.
+
+var randomNum = function randomNum(toNum){ //toNum <-- 45 why?: 로또
+
+    return Math.floor(Math.random()*toNum); //45 -> 0~44
+
+}
+
+ 
+
+var lotto = function lotto(toNum){ //입력값이 toNum
+
+    var arr = new Array(toNum); //배열의 길이가 toNum만큼 배열을 만든다.
+
+    for(var i=0; i<arr.length; i++){
+
+        arr[i] = i+1;
+
+    }
+
+   
+
+    for(var j=0; j<100000; j++){
+
+        var ran = randomNum(toNum);
+
+        var temp = arr[0];
+
+        arr[0] = arr[ran];
+
+        arr[ran] = temp;
+
+    }
+
+   
+
+    return arr.slice(0,7); //0부터 7번째까지 잘라라? or 0부터 7개 잘라라?
+
+}
+
+ 
+
+$(document).ready(function(){
+
+    var timerOne;
+
+    var timerTwo;
+
+    var timerThree;
+
+    var timerFour;
+
+    var timerFive;
+
+    var timerSix;
+
+    var timerSeven;
+
+   
+
+    $('#start').on("click",function(){
+
+    //$("#start").click(function){ (jQuery 문장)와 같다.
+
+    //자바스크립트로는 아래 두줄과 같은 문법을 축약한 것이다.
+
+    //var start = document.querySelector("#start");
+
+    //start.addEventListener("click", function() { });
+
+        // 레드 숫자를 스타트
+
+        timerOne = setInterval(function(){
+
+                        $("#red_num").text(randomNum(46));
+
+                    },
+
+                    20);
+
+        // 오렌지 숫자를 스타트
+
+        timerTwo = setInterval(function(){
+
+                        $('#orange_num').text(randomNum(46));
+
+                    },
+
+                    20);
+
+        // 노란 숫자를 스타트
+
+        timerThree = setInterval(function(){
+
+                        $('#yellow_num').text(randomNum(46));
+
+                    },
+
+                    20);
+
+        // 초록 숫자를 스타트
+
+        timerFour = setInterval(function(){
+
+                        $('#green_num').text(randomNum(46));
+
+                    },
+
+                    20);
+
+        // 파란 숫자를 스타트
+
+        timerFive = setInterval(function(){
+
+                        $('#blue_num').text(randomNum(46));
+
+                    },
+
+                    20);
+
+        // 남색 숫자를 스타트
+
+        timerSix = setInterval(function(){
+
+                        $('#navy_num').text(randomNum(46));
+
+                    },
+
+                    20);
+
+        // 보라 숫자를 스타트
+
+        timerSeven = setInterval(function(){
+
+                        $('#purple_num').text(randomNum(46));
+
+                    },
+
+                    20);
+
+       
+
+    });
+
+   
+
+    $('#stop').on('click',function(){
+
+    //$("#stop").click(function){ (jQuery 문장)와 같다.
+
+    //자바스크립트로는 아래 두줄과 같은 문법을 축약한 것이다.
+
+    //var stop = document.querySelector("#stop");
+
+    //stop.addEventListener("click", function() { });
+
+
+        var lottoNum = lotto(45);
+
+       
+
+        setTimeout(function(){
+
+            clearInterval(timerOne);
+
+            $('#red_num').text(lottoNum[0]);
+
+            },1);
+
+        setTimeout(function(){
+
+            clearInterval(timerTwo);
+
+            $('#orange_num').text(lottoNum[1]);
+
+            },500);
+
+        setTimeout(function(){
+
+            clearInterval(timerThree);
+
+            $('#yellow_num').text(lottoNum[2]);
+
+            },1000);
+
+        setTimeout(function(){
+
+            clearInterval(timerFour);
+
+            $('#green_num').text(lottoNum[3]);
+
+            },1500);
+
+        setTimeout(function(){
+
+            clearInterval(timerFive);
+
+            $('#blue_num').text(lottoNum[4]);
+
+            },2000);
+
+        setTimeout(function(){
+
+            clearInterval(timerSix);
+
+            $('#navy_num').text(lottoNum[5]);
+
+            },2500);
+
+        setTimeout(function(){
+
+            clearInterval(timerSeven);
+
+            $('#purple_num').text(lottoNum[6]);
+
+            },3000);
+
+    });
+
+});
+
+
+
+</script>
+
+</head>
+
+<body>
+
+    <h1>이번주 로또 시작합니다!</h1>
+
+    <div id="red"><p id="red_num"></p></div>
+
+    <div id="orange"><p id="orange_num"></p></div>
+
+    <div id="yellow"><p id="yellow_num"></p></div>
+
+    <div id="green"><p id="green_num"></p></div>
+
+    <div id="blue"><p id="blue_num"></p></div>
+
+    <div id="navy"><p id="navy_num"></p></div>
+
+    <div id="purple"><p id="purple_num"></p></div>
+
+    <nav>
+
+        <input type="button" value="start" id="start">
+
+        <input type="button" value="stop" id="stop">
+
+    </nav> <!--< div>태그와 같은 역할을 하는 태그 -->
+
+</body>
+
+</html>

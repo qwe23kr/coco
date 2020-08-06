@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+td{
+background-position:center center;background-size:50px;background-image:url(https://media.istockphoto.com/vectors/cartoon-bomb-illustration-vector-id842671590?k=6&m=842671590&s=170667a&w=0&h=4nNUxv_qZcQpgsEi64QZBksezHUT9ums398GXTGuJxU=);
+   text-align:center;
+   cursor:pointer;
+   width :40px;
+   height: 40px;
+   color: red;
+}
+td:hover{
+
+   background-color:pink;
+   color:white;
+   font-weigjt:bold;
+   
+}
+
+
+</style>
+</head>
+<body>
+<div id="rDiv"></div>
+<input type="number" id="maxNum" style="background-color:white;">
+<button onclick="startGame(this)" style="width:50px; height: 50px;background-color:red;background-position:center center;background-size:50px;background-image:url(https://i.pinimg.com/originals/bb/9d/c1/bb9dc19107e0eb000c089975e2b3a8ab.png);
+"></button>
+<script>
+   function startGame(){
+	   var size = document.querySelector('#maxNum').value;
+      alert('게임을 시작하지');
+      hasTable();
+      var tdObjs = document.querySelectorAll('td');
+      var bomb = Math.floor(Math.random()*size*size)+1;
+         for(var i=0; i<tdObjs.length; i++){
+            tdObjs[i].onclick=function(){
+               if(this.innerText==bomb){
+                  alert('폭탄 받아라');
+               }else{
+                  this.innerText='X';
+               }
+            }
+         }
+   }
+</script>
+<script>
+   function hasTable(){
+      var table = document.querySelector('#maxNum').value;
+      var str = '<table border="1">';
+      var cnt=1;
+      for(var i =0; i<table; i++){
+         str+='<tr>';
+         for(var j =0; j<table; j++){
+               str+='<td>'+cnt+'</td>';
+               cnt=cnt+1;
+         }
+         str+='</tr>';
+      }
+      str+='</table>';
+      document.querySelector('#rDiv').innerHTML=str;
+   }
+
+
+
+</script>
+
+
+
+</body>
+</html>

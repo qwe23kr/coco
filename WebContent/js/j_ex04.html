@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="/js/jquery-3.5.1.js"></script>
+<style>
+div{
+width:100px;
+height:100px;
+background-color:red;
+position:absolute;
+background-repeat:no-repeat;background-size:cover;height:1000px;background-image: URL(https://cdn.news25h.com/news/photo/202004/1047_1008_912.jpg);
+}
+
+
+
+</style>
+</head>
+<body>
+<button id='b1'>흩날려라 천본앵</button>
+<button id='b2'>돌아와 천본앵</button>
+
+<div id="rDiv">무빙박스</div>
+<script>
+$('#b1').click(function(){
+$('#rDiv').animate({left:'400px',width:'200px',height:'200px'});	
+
+})
+$('#b2').click(function(){
+$('#rDiv').animate({left:'0px',width:'100px',height:'100px'});	
+
+})
+
+</script>
+</body>
+</html>

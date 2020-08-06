@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+body{
+background-image:url(https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/oZ3/image/hX9cbIiQTlSI1JEczgCnKuKmzj0);
+background-repeat: no-repeat;
+background-size:cover;
+}
+
+</style>
+
+</head>
+
+<script>
+
+function lotto() {
+
+	var random = new Array(45);
+
+	var randomb = new Array(6);
+
+	for (i = 0; i < 45; i++) random[i] = i + 1;
+
+	for (i = 0; i < 6; i++) {
+
+		ran = parseInt(Math.random()*random.length);
+
+		randomb[i] = random[ran];
+
+		random.splice(ran,1); 
+
+
+
+		
+
+		for (h = random.length; h; h -= 1) {
+
+			j = Math.floor(Math.random() * h);
+
+			x = random[h - 1];
+
+			random[h - 1] = random[j];
+
+			random[j] = x;
+
+		}
+
+
+
+	}
+
+
+
+
+
+	for (i = 0; i < 6; i++) {
+
+		for (j = 0; j <= i; j++) {
+
+			if(randomb[i] <= randomb[j]) {
+
+				k = randomb[i];
+
+				randomb[i] = randomb[j];
+
+				randomb[j] = k;
+
+			}
+
+		}
+
+	} 
+
+	document.getElementById('st2').innerHTML = randomb;
+
+}
+
+</script>
+
+
+
+<input id="st1" type="button" onclick="lotto()" value="번호추첨" style="border:3px solid;width:200px;height:50px;font-size:30px;position:absolute;left:50%;top:50%;margin-left:-75px; margin-top:-160px;border-radius: 50%;">
+
+<br/><br/>
+
+<div id="st2" style="font-size:40px;border:3px solid;width:350px;height:50px;text-align:center;padding:30px; position:absolute;left:50%;top:50%; margin-left:-180px; margin-top:-85px;color: red; background: white;overflow: hidden; font-family : 궁서체;"></div>
+
+</body>
+</html>
